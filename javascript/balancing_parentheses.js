@@ -1,5 +1,19 @@
 function balancingParentheses(string) {
-  // type your code here
+  const hash = {"(": 0, ")": 0};
+  let additional = 0;
+  if (string[0] === ")")  {
+    additional += 1;
+    string = "(" + string;
+  }
+  if (string[string.length-1] === "(") {
+    additional += 1;
+    string = string + ")";
+  }
+
+  for (const par of string) {
+    hash[par] += 1;
+  }
+  return Math.abs(hash["("] - hash[")"]) + additional;
 }
 
 if (require.main === module) {
